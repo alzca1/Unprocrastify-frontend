@@ -10,6 +10,14 @@ class Navbar extends Component {
           <>
             <p>username: {this.props.user.username}</p>
             <p onClick={this.props.logout}>Logout</p>
+
+            <ul>
+            <li><Link to='/listform'>New List</Link></li>
+            <li><Link to='/todoform'>New Task</Link></li>
+            <li><Link to='/homepage'>Home</Link></li>
+            </ul>
+
+
           </>
         ) : (
           <>
@@ -23,3 +31,5 @@ class Navbar extends Component {
 }
 
 export default withAuth(Navbar);
+
+

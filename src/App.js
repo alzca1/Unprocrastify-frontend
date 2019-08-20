@@ -5,9 +5,14 @@ import Navbar from './components/Navbar.js';
 import PrivateRoute from './components/PrivateRoute.js';
 import AnonRoute from './components/AnonRoute.js';
 
+
 import Private from './pages/Private';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Homepage from './pages/Homepage';
+import TodoForm from './pages/TodoForm';
+import ListForm from './pages/ListForm';
+
 
 import AuthProvider from './contexts/auth-context.js';
 
@@ -20,12 +25,14 @@ class App extends Component {
       <Router>
         <AuthProvider>
           <div className="container">
-            <h1>Basic React Authentication</h1>
+            <h1>Unprocrastify</h1>
             <Navbar />
             <Switch>
               <AnonRoute path="/signup" component={Signup} />
               <AnonRoute path="/login" component={Login} />
-              <PrivateRoute path="/private" component={Private} />
+              <PrivateRoute path="/homepage" component={Homepage} />
+              <PrivateRoute path="/todoform" component={TodoForm} />
+              <PrivateRoute path="/listform" component={ListForm} />
             </Switch>
           </div>
         </AuthProvider>
