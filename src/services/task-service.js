@@ -4,7 +4,8 @@ import axios from 'axios'
 class TaskService {
     constructor() {
         this.taskToDo = axios.create({
-            baseURL: 'http://localhost:4000/task'
+            baseURL: process.env.REACT_APP_BACKEND_DOMAIN + '/task',
+            withCredentials: true,
         });
     }
 

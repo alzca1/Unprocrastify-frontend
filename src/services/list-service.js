@@ -3,7 +3,8 @@ import axios from 'axios';
 class ListService {
     constructor () {
         this.listToDo = axios.create({
-            baseURL: 'http://localhost:4000/list'
+            baseURL: process.env.REACT_APP_BACKEND_DOMAIN + '/list',
+            withCredentials: true,
         })
     };
 

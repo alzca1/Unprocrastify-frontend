@@ -21,6 +21,7 @@ class AuthProvider extends Component {
   }
 
   userLogin = (user) => {
+    console.log('context')
     return authService.login(user)
     .then((user) => {
       this.setState({
