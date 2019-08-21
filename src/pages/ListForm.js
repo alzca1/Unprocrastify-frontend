@@ -29,6 +29,7 @@ class ListForm extends Component {
         .catch(error => {
             console.log(error)
         })
+        this.props.history.push('/homepage')
     }
 
 

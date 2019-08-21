@@ -38,19 +38,32 @@ class Signup extends Component {
     const { username, email, password } = this.state;
     return (
       <>
+      <section className="content">
+      <div className="title">
+          <h1 className="title">Unprocrastify</h1>
+        </div>
+        <div class-name="signup-page"> 
         <form onSubmit={this.handleFormSubmit}>
-          <label htmlFor='username'>Username:</label>
-          <input id='username' type='text' name='username' value={username} onChange={this.handleChange}/>
-          <label htmlFor='email'>E-mail:</label>
-          <input id='email' type='text' name='email' value={email} onChange={this.handleChange}/>
-          <label htmlFor='password'>Password:</label>
-          <input id='password' type='password' name='password' value={password} onChange={this.handleChange} />
-          <input type='submit' value='Signup' />
+          <div className="input-box"> 
+            <input className="input-text" id='username' type='text' name='username' value={username} onChange={this.handleChange} placeholder="Pick an username"/>
+          </div>
+
+          <div className="input-box">
+            <input className="input-text" id='email' type='text' name='email' value={email} onChange={this.handleChange} placeholder="Insert your e-mail address"/>        
+          </div>
+          
+          <div className="input-box">
+            <input className="input-text" id='password' type='password' name='password' value={password} onChange={this.handleChange} placeholder="Pick an password"/>
+          </div>
+
+          <input className="btn-submit" type='submit' value='Signup' />
         </form>
 
         <p>Already have account? 
           <Link to={'/login'}> Login</Link>
         </p>
+        </div>
+      </section>
 
       </>
     )

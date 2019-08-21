@@ -27,18 +27,28 @@ class Login extends Component {
   render() {
     const { username, password } = this.state;
     return (
-      <>
-        <form onSubmit={this.handleFormSubmit}>
-          <label htmlFor='username' >Username:</label>
-          <input id='username' type='text' name='username' value={username} onChange={this.handleChange}/>
-          <label htmlFor='password'>Password:</label>
-          <input id='password' type='password' name='password' value={password} onChange={this.handleChange} />
-          <input type='submit' value='Login' />
-        </form>
+      <> 
+      <section className="content">
+        <div className="title">
+          <h1 className="title">Unprocrastify</h1>
+        </div>
+        <div className="login-page">
+          <form onSubmit={this.handleFormSubmit}>
+            <div className="input-box"> 
+              {/* <label htmlFor='username' >Username:</label> */}
+              <input className="input-text" id='username' type='text' name='username' value={username} onChange={this.handleChange} placeholder="username"/>
+            </div>
 
-        <p>You don't have an accout yet?
+            <div className="input-box"> 
+              <input className="input-text" id='password' type='password' name='password' value={password} onChange={this.handleChange} placeholder="password" />   
+            </div>
+            <input className="btn-submit" type='submit' value='Login' />
+          </form>
+          <p>You don't have an accout yet?
             <Link to={'/signup'}> Signup</Link>
-        </p>
+          </p>
+        </div>
+      </section>
       </>
     )
   }

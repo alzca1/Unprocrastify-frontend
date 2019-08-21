@@ -12,12 +12,14 @@ import Login from './pages/Login';
 import Homepage from './pages/Homepage';
 import TodoForm from './pages/TodoForm';
 import ListForm from './pages/ListForm';
+import UpdateTodoForm from './pages/UpdateTodoForm.js';
+
 
 
 import AuthProvider from './contexts/auth-context.js';
 
 import './App.css';
-import 'milligram';
+
 
 class App extends Component {
   render() {
@@ -25,12 +27,13 @@ class App extends Component {
       <Router>
         <AuthProvider>
           <div className="container">
-            <h1>Unprocrastify</h1>
+            {/* <h1 className="title">Unprocrastify</h1> */}
             <Navbar />
             <Switch>
               <AnonRoute path="/signup" component={Signup} />
-              <AnonRoute path="/login" component={Login} />
+              <AnonRoute path="/login" component={Login}  />
               <PrivateRoute path="/homepage" component={Homepage} />
+              <PrivateRoute path="/task/:id/edit" component={UpdateTodoForm} />
               <PrivateRoute path="/todoform" component={TodoForm} />
               <PrivateRoute path="/listform" component={ListForm} />
             </Switch>

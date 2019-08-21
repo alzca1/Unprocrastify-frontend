@@ -23,8 +23,9 @@ class TaskService {
         .then (response => response)
     }
 
-    updateOneTask(id,updatedTask){
-        return this.taskToDo.put(`/tasks/${id}/edit `, updatedTask)
+    updateOneTask(updatedTask){
+        
+        return this.taskToDo.put(`/tasks/${updatedTask.id}/edit `, updatedTask)
         .then (response => response)
     }
 

@@ -3,10 +3,9 @@ import withAuth from '../components/withAuth'
 import taskService from '../services/task-service'
 import listService from '../services/list-service'
 import Navbar from '../components/Navbar'
-import { Redirect } from 'react-router'
 
 
- class TodoForm extends Component {
+ class UpdateTodoForm extends Component {
 
     state = {
         name: '',
@@ -14,17 +13,36 @@ import { Redirect } from 'react-router'
         priority: '', 
         notes: '',
         list: [], 
+        selectedList: '',
         completed: false, 
         owner: this.props.user._id, 
         user: '',
-        selectedList: ''
-         
+        selectedList: '',
+        id: '',
         
     };
 
 
     componentDidMount(){
-        listService.getAllLists()
+       
+        const {id} = this.props.match.params;
+
+        taskService.getOneTask(id)
+        .then ((response) => {
+            const {name,duedate, priority, notes, list, completed, owner, user} = response.data.specificTask;
+            this.setState({
+                name,
+                duedate, 
+                priority,
+                notes,
+                list,
+                completed,
+                owner,
+                user,
+                id
+            })
+        }).then (() => {
+            listService.getAllLists()
         .then ((response) => {
             const listsData = response.data
             console.log(listsData)
@@ -33,6 +51,10 @@ import { Redirect } from 'react-router'
                 selectedList: listsData.listOfLists[0]._id
                 
             })
+        })
+        .catch((error) => {
+            console.log(error)
+        })
         })
         .catch((error) => {
             console.log(error)
@@ -49,31 +71,23 @@ import { Redirect } from 'react-router'
 
     handleSubmit = (event) => {
         console.log(event)
-        const {name, duedate,  priority, notes, owner, selectedList} = this.state; 
+        const {name, duedate,  priority, notes, owner, selectedList, id } = this.state; 
         event.preventDefault();
-        taskService.createNewTask({
-            name, duedate, priority, notes, owner, list: selectedList
+        taskService.updateOneTask({
+            id, name, duedate, priority, notes, owner
         })
-       
-        
-        .then(() => response => {
-            
+        .then(response => {
            console.log('task added!')
-           this.props.history.push('/homepage')
-           
-
-           
-           
         })
         .catch(error => {
             console.log(error)
         })
-        
+         this.props.history.push('/homepage')
     }
 
     render(){
         console.log(this.props.user)
-        const { name,duedate, notes, redirect} = this.state; 
+        const { name,duedate, notes} = this.state; 
         return(
             <form id="todoForm" onSubmit={this.handleSubmit}> 
             
@@ -115,10 +129,9 @@ import { Redirect } from 'react-router'
             </div>
             <button type="submit"> Add new Task</button>
             </form>
-            
         )
     }
 
 }
 
-export default withAuth(TodoForm)
+export default withAuth(UpdateTodoForm)
